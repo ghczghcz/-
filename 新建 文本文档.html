@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>琪露诺 · 东方Project人物介绍</title>
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== 全局重置 & 基础 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ice-light: #e3f2fd;
+            --ice-mid: #90caf9;
+            --ice-dark: #1a237e;
+            --ice-primary: #0d47a1;
+            --ice-accent: #00bcd4;
+            --ice-glow: rgba(144, 202, 249, 0.3);
+            --text-dark: #1a1a2e;
+            --text-muted: #4a4a6a;
+            --white: #ffffff;
+            --shadow: 0 12px 48px rgba(13, 71, 161, 0.12);
+            --radius: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, sans-serif;
+            background: linear-gradient(145deg, #f0f7ff 0%, #e3f0fa 100%);
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== 雪花飘落背景（纯CSS装饰） ===== */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+            animation: fall linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg) translateX(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) translateX(80px);
+                opacity: 0;
+            }
+        }
+
+        /* ===== 导航栏 ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 14px 0;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--ice-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            color: var(--ice-accent);
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ice-accent);
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--ice-primary);
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(160deg, #0d47a1 0%, #1565c0 30%, #0288d1 70%, #00bcd4 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '❄';
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            font-size: 12rem;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.6rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 6px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero-content .nickname {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content .nickname i {
+            margin-right: 6px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 480px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hero-tags span {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-avatar {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .hero-avatar .icon-snowflake {
+            font-size: 9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .hero-avatar .icon-label {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.2);
+            transform: rotate(10deg);
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%,
+            100% {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                text-shadow: 0 0 70px rgba(255, 255, 255, 0.25);
+            }
+        }
+
+        /* ===== 内容卡片通用 ===== */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--ice-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .section-title h2 i {
+            color: var(--ice-accent);
+            margin-right: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 8px auto 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 32px 28px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(13, 71, 161, 0.04);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 56px rgba(13, 71, 161, 0.12);
+        }
+
+        .card .icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--ice-primary), var(--ice-accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--ice-primary);
+        }
+
+        .card p,
+        .card li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .card ul li i {
+            color: var(--ice-accent);
+            margin-right: 10px;
+            width: 18px;
+        }
+
+        /* ===== 关于区域 (两栏) ===== */
+        .about-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-text .highlight {
+            color: var(--ice-primary);
+            font-weight: 600;
+        }
+
+        .info-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .info-item {
+            background: var(--white);
+            padding: 14px 18px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(13, 71, 161, 0.04);
+        }
+
+        .info-item .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ice-accent);
+            font-weight: 600;
+        }
+
+        .info-item .value {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        /* ===== 人际关系 ===== */
+        .relation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .relation-item {
+            background: var(--white);
+            padding: 16px 20px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(13, 71, 161, 0.04);
+            transition: var(--transition);
+	    text-decoration: none;      /* 去掉下划线 */
+    	    color: var(--text-dark);    /* 保持文字颜色不变成蓝色 */
+    	    display: block;             /* 让整个卡片都可点 */
+    	    cursor: pointer; 
+        }
+
+        .relation-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--ice-accent);
+        }
+
+        .relation-item .emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .relation-item .name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .relation-item .relation {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== 二次设定 ===== */
+        .fandom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .fandom-item {
+            background: var(--white);
+            padding: 20px 24px;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            border-left: 4px solid var(--ice-accent);
+        }
+
+        .fandom-item h4 {
+            font-size: 1rem;
+            color: var(--ice-primary);
+            margin-bottom: 4px;
+        }
+
+        .fandom-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ===== 登场作品 ===== */
+        .appear-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .appear-tag {
+            background: var(--white);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ice-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(13, 71, 161, 0.06);
+            transition: var(--transition);
+        }
+
+        .appear-tag:hover {
+            background: var(--ice-primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .appear-tag i {
+            margin-right: 6px;
+        }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            position: relative;
+            z-index: 1;
+            background: var(--ice-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0 24px;
+            margin-top: 40px;
+        }
+
+        .footer .container {
+            text-align: center;
+        }
+
+        .footer .logo {
+            color: var(--white);
+            font-size: 1.4rem;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer .footer-heart {
+            color: #ff6b81;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 992px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-tags {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-avatar {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .hero-avatar .icon-snowflake {
+                font-size: 6rem;
+            }
+
+            .about-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 260px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                padding: 40px;
+                gap: 20px;
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.06);
+                transition: var(--transition);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-avatar {
+                max-width: 200px;
+            }
+            .hero-avatar .icon-snowflake {
+                font-size: 4.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+
+            .relation-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .relation-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .fandom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 移动端遮罩 */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 雪花背景 ===== -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <!-- ===== 移动端遮罩 ===== -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ===== 导航栏 ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-snowflake"></i> 琪露诺
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">关于</a></li>
+                <li><a href="#profile">档案</a></li>
+                <li><a href="#relations">人际关系</a></li>
+                <li><a href="#fandom">二次设定</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="切换菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="nickname">
+                    <i class="fas fa-hashtag"></i> ⑨ · 冰之妖精
+                </div>
+                <h1>琪露诺</h1>
+                <p class="subtitle">チルノ · Cirno</p>
+                <p>
+                    她是居住在雾之湖畔的冰之妖精，自称“幻想乡最强”。
+                    虽然头脑简单，却拥有操纵冷气的强大能力。
+                    活泼好战、天真烂漫，是东方Project中人气极高的角色。
+                </p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-fan"></i> 妖精</span>
+                    <span><i class="fas fa-ice-cream"></i> 冰</span>
+                    <span><i class="fas fa-crown"></i> 最强</span>
+                    <span><i class="fas fa-frog"></i> 冻青蛙</span>
+                    <span><i class="fas fa-brain"></i> 笨蛋</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-avatar">
+                       <img 
+        			src="https://c-ssl.duitang.com/uploads/item/201606/03/20160603133525_sURym.jpeg" 
+        			alt="琪露诺" 
+        			style="width: 80%; height: 80%; object-fit: contain; border-radius: 50%;"
+   			 />
+    			<span class="icon-label">❄</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 关于 ===== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-info-circle"></i> 关于琪露诺</h2>
+                <p>雾之湖畔的冰之妖精，天真与力量并存的存在。</p>
+            </div>
+            <div class="about-wrap">
+                <div class="about-text">
+                    <p>
+                        <span class="highlight">琪露诺</span>（チルノ / Cirno）是日本同人游戏社团
+                        <span class="highlight">上海爱丽丝幻乐团</span>作品《东方Project》中登场的角色。
+                        她首次登场于2002年的《东方红魔乡》，作为2面BOSS出现。
+                    </p>
+                    <p>
+                        她是居住在<span class="highlight">雾之湖</span>附近的冰之妖精，
+                        也是湖附近妖精们的领袖，力量比其他妖精更强。
+                        属于好战型，拥有操纵冷气、冻结一切的能力。
+                        不过，她的强大仅限于能力——头脑方面则非常笨拙。
+                    </p>
+                    <p>
+                        琪露诺最喜欢说的一句话是 <span class="highlight">「あたいってば最強ね！」</span>
+                        （本小姐最强！）。她喜欢恶作剧，尤其喜欢把青蛙冻住再放入河中解冻，
+                        但每三只青蛙就有一只会被弄碎……
+                    </p>
+                    <p style="font-size:0.9rem; color:var(--text-muted); background:rgba(13,71,161,0.04); padding:12px 18px; border-radius:12px;">
+                        <i class="fas fa-quote-left" style="color:var(--ice-accent); margin-right:6px;"></i>
+                        创作者ZUN表示，琪露诺是一个性格鲜明、与剧情无关的角色，因此放到别的场合也很好用。
+                    </p>
+                </div>
+                <div>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="label">种族</div>
+                            <div class="value">冰之妖精</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">性别</div>
+                            <div class="value">女性</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">首次登场</div>
+                            <div class="value">《东方红魔乡》2面BOSS</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">居住地</div>
+                            <div class="value">雾之湖畔</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">能力</div>
+                            <div class="value">操纵冷气程度的能力</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">昵称</div>
+                            <div class="value">⑨ · 笨蛋 · baka</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">称号</div>
+                            <div class="value">湖上的冰精 · 冰之妖精</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">角色曲</div>
+                            <div class="value">《活泼纯情的小姑娘》</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 详细档案 ===== -->
+    <section class="section section-alt" id="profile">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-user-circle"></i> 详细档案</h2>
+                <p>外貌 · 性格 · 能力的全方位解读。</p>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="icon"><i class="fas fa-user"></i></div>
+                    <h3>外貌特征</h3>
+                    <ul>
+                        <li><i class="fas fa-circle" style="color:#64b5f6;"></i> 浅蓝色短发</li>
+                        <li><i class="fas fa-circle" style="color:#42a5f5;"></i> 蓝色眼瞳</li>
+                        <li><i class="fas fa-ribbon"></i> 脑后系着蓝色大蝴蝶结</li>
+                        <li><i class="fas fa-wind"></i> 背后有六根冰锥翼</li>
+                        <li><i class="fas fa-tshirt"></i> 蓝色连衣裙，光着脚</li>
+                        <li><i class="fas fa-ruler-vertical"></i> 身材相当矮小</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h3>性格特点</h3>
+                    <ul>
+                        <li><i class="fas fa-crown"></i> 自称“最强”，极度自信</li>
+                        <li><i class="fas fa-fist-raised"></i> 好战，喜欢四处挑战</li>
+                        <li><i class="fas fa-child"></i> 幼稚、天真、头脑简单</li>
+                        <li><i class="fas fa-grin-tongue"></i> 喜欢恶作剧，爱捉弄人</li>
+                        <li><i class="fas fa-frog"></i> 特殊兴趣：冻青蛙再解冻[</li>
+                        <li><i class="fas fa-fire"></i> 害怕火焰和热源</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fas fa-snowflake"></i></div>
+                    <h3>能力详解</h3>
+                    <ul>
+                        <li><i class="fas fa-wind"></i> 操纵冷气，周围常伴寒气</li>
+                        <li><i class="fas fa-water"></i> 凝聚空气水分，形成冰</li>
+                        <li><i class="fas fa-bullseye"></i> 可瞬间冻结小物体</li>
+                        <li><i class="fas fa-shield-alt"></i> 甚至能冻结弹幕</li>
+                        <li><i class="fas fa-thermometer-half"></i> 不使用能力时也散发寒气</li>
+                        <li><i class="fas fa-exclamation-triangle"></i> 对火把等热源很弱</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 人际关系 ===== -->
+    <section class="section" id="relations">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-users"></i> 人际关系</h2>
+                <p>在幻想乡中，琪露诺与这些角色有着密切的联系。</p>
+            </div>
+            <div class="relation-grid">
+    		<a href="https://thwiki.cc/大妖精" target="_blank" rel="noopener noreferrer" class="relation-item">
+        		<span class="emoji">🧊</span>
+        		<div class="name">大妖精</div>
+        		<div class="relation">友人</div>
+    		</a>
+    		<a href="https://thwiki.cc/露米娅" target="_blank" rel="noopener noreferrer" class="relation-item">
+       			<span class="emoji">🌙</span>
+        		<div class="name">露米娅</div>
+        		<div class="relation">友人</div>
+    		</a>
+    		<a href="https://thwiki.cc/莉格露·奈特巴格" target="_blank" rel="noopener noreferrer" class="relation-item">
+        		<span class="emoji">🐞</span>
+        		<div class="name">莉格露·奈特巴格</div>
+        		<div class="relation">友人</div>
+    		</a>
+    		<a href="https://thwiki.cc/米斯蒂娅·萝蕾拉" target="_blank" rel="noopener noreferrer" class="relation-item">
+     			<span class="emoji">🎤</span>
+        		<div class="name">米斯蒂娅·萝蕾拉</div>
+        		<div class="relation">友人</div>
+    		</a>
+    		<a href="https://thwiki.cc/蕾迪·霍瓦特罗克" target="_blank" rel="noopener noreferrer" class="relation-item">
+        		<span class="emoji">❄️</span>
+        		<div class="name">蕾迪·霍瓦特罗克</div>
+        		<div class="relation">监护人般的存在</div>
+    		</a>
+    		<a href="https://thwiki.cc/博丽灵梦" target="_blank" rel="noopener noreferrer" class="relation-item">
+        		<span class="emoji">⛩️</span>
+        		<div class="name">博丽灵梦</div>
+        		<div class="relation">被退治过</div>
+    		</a>
+    		<a href="https://thwiki.cc/洩矢诹访子" target="_blank" rel="noopener noreferrer" class="relation-item">
+        		<span class="emoji">🐸</span>
+        		<div class="name">洩矢诹访子</div>
+        		<div class="relation">二设中为仇敌</div>
+    		</a>
+    		<a href="https://thwiki.cc/上白泽慧音" target="_blank" rel="noopener noreferrer" class="relation-item">
+        		<span class="emoji">📚</span>
+        		<div class="name">上白泽慧音</div>
+        		<div class="relation">二设中为师生</div>
+    		</a>
+		</div>
+        </div>
+    </section>
+
+    <!-- ===== 二次设定 ===== -->
+    <section class="section section-alt" id="fandom">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-star"></i> 二次设定与梗</h2>
+                <p>粉丝文化中衍生出的有趣设定，让琪露诺的形象更加丰富。</p>
+            </div>
+            <div class="fandom-grid">
+                <div class="fandom-item">
+                    <h4>⑨ · 笨蛋</h4>
+                    <p>在《东方花映冢》介绍图中被标为⑨并注以“笨蛋”。从此⑨成为她的代名词，也用来指代“笨蛋”。</p>
+                </div>
+                <div class="fandom-item">
+                    <h4>幻想乡最强</h4>
+                    <p>源自她常说的“本小姐最强”，粉丝们以此调侃她与幻想乡真正强者之间的差距。</p>
+                </div>
+                <div class="fandom-item">
+                    <h4>冻青蛙</h4>
+                    <p>她喜欢把青蛙冻住再放入河中解冻，但成功率只有三分之二。这个梗也衍生出她与诹访子（青蛙之神）为敌的设定。</p>
+                </div>
+                <div class="fandom-item">
+                    <h4>寺子屋的坏学生</h4>
+                    <p>二次设定中她在寺子屋上学，成绩极差、调皮捣蛋。</p>
+                </div>
+                <div class="fandom-item">
+                    <h4>当空调</h4>
+                    <p>因为她周围总是很冷，夏天会被抓去当空调用。</p>
+                </div>
+                <div class="fandom-item">
+                    <h4>克劳⑨</h4>
+                    <p>一个较为完整的二设形象，穿着黑色披肩，带有青蛙装饰。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 登场作品 ===== -->
+    <section class="section" id="appear">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-gamepad"></i> 主要登场作品</h2>
+                <p>琪露诺在多部东方Project游戏中均有登场。</p>
+            </div>
+            <div class="appear-grid">
+                 <a href="https://thwiki.cc/东方红魔乡" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-crosshairs"></i> 东方红魔乡 (2面			BOSS)</a>
+    		<a href="https://thwiki.cc/东方妖妖梦" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-skull"></i> 东方妖妖梦 (1面中				BOSS)</a>
+   		<a href="https://thwiki.cc/东方花映冢" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-flower"></i> 东方花映冢</a>
+    		<a href="https://thwiki.cc/东方非想天则" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-fist-raised"></i> 东方非想天则</a>
+    		<a href="https://thwiki.cc/妖精大战争" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-bolt"></i> 妖精大战争 (自机)</a>
+    		<a href="https://thwiki.cc/东方天空璋" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-cloud-sun"></i> 东方天空璋 (自机)</a>
+    		<a href="https://thwiki.cc/东方求闻史纪" target="_blank" rel="noopener noreferrer" class="appear-tag"><i class="fas fa-book"></i> 东方求闻史纪</a>
+            </div>
+            <p style="text-align:center; margin-top:24px; color:var(--text-muted); font-size:0.9rem;">
+                <i class="fas fa-music" style="color:var(--ice-accent);"></i>
+                角色曲：<strong>《おてんば恋娘》</strong>（活泼纯情的小姑娘）
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> 琪露诺
+            </div>
+            <p style="margin-bottom:4px;">
+                「あたいってば最強ね！」 — 本小姐最强！
+            </p>
+            <p>
+                <i class="fas fa-copyright"></i> 东方Project 归 上海爱丽丝幻乐团 所有 ·
+                本页面为粉丝向角色介绍
+                <span class="footer-heart">❤</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- 雪花生成 ----
+            const snowContainer = document.getElementById('snowflakes');
+            const flakes = ['❄', '❅', '❆', '✦'];
+            for (let i = 0; i < 30; i++) {
+                const span = document.createElement('span');
+                span.className = 'snowflake';
+                span.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+                span.style.left = Math.random() * 100 + '%';
+                span.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+                span.style.animationDuration = (8 + Math.random() * 12) + 's';
+                span.style.animationDelay = (Math.random() * 10) + 's';
+                span.style.opacity = 0.3 + Math.random() * 0.4;
+                snowContainer.appendChild(span);
+            }
+
+            // ---- 移动端菜单 ----
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navOverlay = document.getElementById('navOverlay');
+
+            function toggleMenu() {
+                const isOpen = navLinks.classList.toggle('open');
+                menuToggle.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+            navOverlay.addEventListener('click', toggleMenu);
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navLinks.classList.contains('open')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // ---- 平滑锚点滚动 ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset -
+                            70;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
